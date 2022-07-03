@@ -1,0 +1,45 @@
+.container {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 512px auto;
+    gap: 25px;
+
+    .main {
+        width: 100%;
+
+        .canvas {
+            border-radius: 3px;
+            background-color: #f5f5f5;
+            box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result {
+            margin-top: 15px;
+            border-radius: 3px;
+                background-color: #f5f5f5;
+                box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+                overflow: hidden;
+
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+
+    .controls {
+        .content {
+            border-radius: 3px;
+            background-color: #f5f5f5;
+            box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+
+            .title {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+
+
+}

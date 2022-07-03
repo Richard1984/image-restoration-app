@@ -1,0 +1,20 @@
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+
+    &__line {
+        flex-grow: 1;
+        height: 1px;
+        background-color:  black;
+        display: inline;
+    }
+
+    &__text {
+        font-size: 14px;
+        font-weight: bold;
+        color: inherit;
+        margin: 0 10px;
+    }
+}

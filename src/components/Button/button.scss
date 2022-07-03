@@ -1,0 +1,42 @@
+.button {
+    padding: 12px 9px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    appearance: none;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+        backface-visibility: hidden;
+
+    &--facebook {
+        background-color: #3b5998;
+        border: 1px solid darken(#3b5998, 5%);
+        color: #fff !important;
+    }
+
+    .button__icon {
+        margin-right: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: inherit;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .button__text {
+        font-size: 14px;
+        font-weight: bold;
+        color: inherit;
+        display: inline-block;
+    }
+
+    &:hover {
+        filter: brightness(95%);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.01);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+}

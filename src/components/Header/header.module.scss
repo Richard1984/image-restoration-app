@@ -1,0 +1,28 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 1rem;
+
+        .logo {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .right {
+        padding-right: 1rem;
+    }
+}
