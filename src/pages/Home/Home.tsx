@@ -91,7 +91,7 @@ const Home = (props: HomeProps) => {
             setResultImage(URL.createObjectURL(response.data))
             toast.update(loadingToast, { render: "Image restored!", type: 'success', isLoading: false, autoClose: 5000 })
         } catch (e) {
-            toast.update(loadingToast, { render: "An error occured during the restore process!", type: 'error', isLoading: false, autoClose: 5000 })
+            toast.update(loadingToast, { render: "An error occurred during the restore process!", type: 'error', isLoading: false, autoClose: 5000 })
         }
     }
 
