@@ -10,7 +10,7 @@ interface HomeProps {
 
 const Home = (props: HomeProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const [size, setSize] = useState(20)
+    const [size, setSize] = useState(4)
     const [color, setColor] = useState("black")
     const [resultImage, setResultImage] = useState<string>("")
     const [file, setFile] = useState<File | null>(null)
@@ -30,6 +30,8 @@ const Home = (props: HomeProps) => {
         const context = canvasElement!.getContext("2d");
 
         context!.clearRect(0, 0, canvasElement!.width, canvasElement!.height)
+        setResultImage("")
+        setFile(null)
     }
 
     const fileToDataUri = (field: Blob): Promise<string | ArrayBuffer | null> => {
@@ -147,13 +149,29 @@ const Home = (props: HomeProps) => {
         context!.closePath();
     }
 
+    const handleSaveOriginalImage = () => {
+        const canvasElement = canvasRef.current
+
+        const link = document.createElement('a');
+        link.download = file!.name;
+        link.href = canvasElement!.toDataURL('image/png');
+        link.click();
+        // link.delete;
+
+        // window.open(canvasElement!.toDataURL('image/png'));
+    }
+
+    const handleSaveResultImage = () => {
+        window.open(resultImage);
+    }
+
     useEffect(() => {
 
         const canvasElement = canvasRef.current
 
         if (canvasElement) {
-            canvasElement.width = canvasElement?.parentElement?.clientWidth || 0
-            canvasElement.height = canvasElement?.parentElement?.clientWidth || 0
+            canvasElement.width = canvasElement?.parentElement?.clientHeight || 0
+            canvasElement.height = canvasElement?.parentElement?.clientHeight || 0
         }
 
         // enabling drawing on the blank canvas
@@ -188,7 +206,7 @@ const Home = (props: HomeProps) => {
                             modify on it.
                         </p>
                     </div>
-                    <div style={{ marginTop: "5px" }}>
+                    {/* <div style={{ marginTop: "5px" }}>
                         <span>Size: </span>
                         <input
                             type="range"
@@ -199,9 +217,10 @@ const Home = (props: HomeProps) => {
                             id="sizeRange"
                             onChange={handleChangeSize}
                         />
-                    </div>
+                        <span>{size}</span>
+                    </div> */}
 
-                    <div style={{ marginTop: "5px" }}>
+                    {/* <div style={{ marginTop: "5px" }}>
                         <span>Color: </span>
                         <input type="radio" name="colorRadio" id="black" value="black" checked={color === "black"} onChange={handleChangeColor} />
                         <label htmlFor="black">Black</label>
@@ -213,7 +232,7 @@ const Home = (props: HomeProps) => {
                         <label htmlFor="green">Green</label>
                         <input type="radio" name="colorRadio" id="blue" value="blue" checked={color === "blue"} onChange={handleChangeColor} />
                         <label htmlFor="blue">Blue</label>
-                    </div>
+                    </div> */}
                     <div style={{ marginTop: "15px" }}>
                         <input
                             id="upload" type="file" accept="image/*"
@@ -223,8 +242,12 @@ const Home = (props: HomeProps) => {
                             onChange={handleFileSelect}
                         />
                         <Button onClick={() => selectFiles()} text="Upload image to restore" componentProps={{ style: { display: "inline-block", marginRight: "15px" } }} />
-
+                        
                         {file?.name ? <p style={{ display: "inline-block" }}>Selected file: {file?.name}</p> : null}
+                    </div>
+                    <div style={{ marginTop: "15px" }}>
+                        <Button onClick={() => handleSaveOriginalImage()} text="Save original image" componentProps={{ style: { marginRight: "15px" } }} />
+                        <Button onClick={() => handleSaveResultImage()} text="Save result image" componentProps={{ style: { marginRight: "15px" } }} />
                     </div>
                     <div style={{ marginTop: "15px" }}>
                         <Button onClick={() => handleClearCanvas()} text="Clear" componentProps={{ style: { marginRight: "15px" } }} />
