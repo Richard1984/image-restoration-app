@@ -130,14 +130,14 @@ const Home = (props: HomeProps) => {
         context!.strokeStyle = color;
         context!.lineJoin = "round";
         context!.lineCap = "round";
-        context!.moveTo(e.clientX - canvasElement!.offsetLeft, e.clientY - canvasElement!.offsetTop);
+        context!.moveTo(e.clientX - canvasElement!.offsetLeft + document.documentElement.scrollLeft, e.clientY - canvasElement!.offsetTop + document.documentElement.scrollTop);
     }
 
     const handleOnMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         const canvasElement = e.nativeEvent.target as HTMLCanvasElement
         const context = canvasElement!.getContext("2d");
         if (isDrawing) {
-            context!.lineTo(e.clientX - canvasElement!.offsetLeft, e.clientY - canvasElement!.offsetTop);
+            context!.lineTo(e.clientX - canvasElement!.offsetLeft + document.documentElement.scrollLeft, e.clientY - canvasElement!.offsetTop + document.documentElement.scrollTop);
             context!.stroke();
         }
     }
