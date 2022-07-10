@@ -32,6 +32,7 @@ const Home = (props: HomeProps) => {
         context!.clearRect(0, 0, canvasElement!.width, canvasElement!.height)
         setResultImage("")
         setFile(null)
+        fileInput.current!.value = ""
     }
 
     const fileToDataUri = (field: Blob): Promise<string | ArrayBuffer | null> => {
